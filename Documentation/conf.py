@@ -120,8 +120,9 @@ else:
         for p in breathe_projects:
             subprocess.check_call(['doxygen', 'Doxyfile-{}'.format(p)])
 
+html_css_files=['css/gramine.css']
+
 def setup(app):
-    app.add_stylesheet('css/gramine.css')
     app.connect('builder-inited', generate_doxygen)
 
 todo_include_todos = True
