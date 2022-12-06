@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packaging and distributing &mdash; Gramine  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/gramine.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/gramine_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Start Here</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation-index.html">Select a Deployment Option</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ready-Made Application</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../curated-installation.html">Ready-made Confidential compute images</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Protect Your Container</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gsc-installation.html">Gramine Shielded Containers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Custom Build Gramine</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../custom-installation.html">Quick Install or Custom Build Gramine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration-index.html">Configure Gramine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-index.html">Developer Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts-index.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor-index.html">Contribution Guidelines</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Resource</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../management-team.html">Management Team</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gramine-users.html">Users of Gramine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gramine</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Packaging and distributing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/devel/packaging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+
+           <div itemprop="articleBody">
+             
+  <section id="packaging-and-distributing">
+<h1>Packaging and distributing<a class="headerlink" href="#packaging-and-distributing" title="Permalink to this headline"></a></h1>
+<p>Gramine project aims to support two most recent releases of the long-lived
+distributions (e.g. Debian, Ubuntu LTS, [the CentOS replacement that will
+hopefully emerge soon], …).</p>
+<p>Currently officially supported distributions:</p>
+<ul class="simple">
+<li><p>Ubuntu (20.04 LTS, 18.04 LTS).</p></li>
+</ul>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline"></a></h2>
+<section id="linux-kernel">
+<h3>Linux kernel<a class="headerlink" href="#linux-kernel" title="Permalink to this headline"></a></h3>
+<p>Because upstream support for SGX was only merged relatively recently and in
+non-longterm release, together with the fact that EPID attestation is
+unsupported in upstream driver, <strong>it is acceptable to require the user to use
+kernel other that provided by distro</strong>.</p>
+</section>
+<section id="glibc">
+<span id="id1"></span><h3>glibc<a class="headerlink" href="#glibc" title="Permalink to this headline"></a></h3>
+<p>Glibc is a special case, because we need to provide the version supported by the
+distribution <strong>or a later version</strong>, which is inverse from the usual dependency
+relation that we need to support the version from distro or earlier. Therefore
+we will provide some reasonably new version under the assumption that older
+software will be able to run against new glibc version.</p>
+</section>
+<section id="musl">
+<h3>musl<a class="headerlink" href="#musl" title="Permalink to this headline"></a></h3>
+<p>See <a class="reference internal" href="#glibc"><span class="std std-ref">glibc</span></a>. Same thing applies to musl.</p>
+</section>
+<section id="varia">
+<h3>varia<a class="headerlink" href="#varia" title="Permalink to this headline"></a></h3>
+<p>Maintainer tools, examples, etc. need not run on all distros.</p>
+</section>
+</section>
+<section id="packaging-guide">
+<h2>Packaging guide<a class="headerlink" href="#packaging-guide" title="Permalink to this headline"></a></h2>
+<p>TBD</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline"></a></h2>
+<p>Distro support policy was inspired by <a class="reference external" href="https://libvirt.org/platforms.html">Libvirt’s policy</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Gramine Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
